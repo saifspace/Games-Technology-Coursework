@@ -48,13 +48,15 @@ void Asteroid::OnCollision(const GameObjectList& objects)
 	mWorld->FlagForRemoval(GetThisPtr());
 
 	if (GetThisPtr()->GetType() == GameObjectType("Asteroid")) {
-		shared_ptr<Shape> nAsteroid_shape = make_shared<Shape>("asteroid.shape");
-		shared_ptr<GameObject> nAsteroid = make_shared<Asteroid>("miniAsteroid");
-		nAsteroid->SetShape(nAsteroid_shape);
-		nAsteroid->SetPosition(GetThisPtr()->GetPosition());
-		nAsteroid->SetScale(GetThisPtr()->GetScale() / 1);
-		nAsteroid->SetBoundingShape(make_shared<BoundingSphere>(nAsteroid->GetThisPtr(), 5.0f));
-		mWorld->AddObject(nAsteroid);
+		for (int i = 0; i < 2; i++) {
+			shared_ptr<Shape> nAsteroid_shape = make_shared<Shape>("asteroid.shape");
+			shared_ptr<GameObject> nAsteroid = make_shared<Asteroid>("miniAsteroid");
+			nAsteroid->SetShape(nAsteroid_shape);
+			nAsteroid->SetPosition(GetThisPtr()->GetPosition());
+			nAsteroid->SetScale(GetThisPtr()->GetScale() / 1);
+			nAsteroid->SetBoundingShape(make_shared<BoundingSphere>(nAsteroid->GetThisPtr(), 5.0f));
+			mWorld->AddObject(nAsteroid);
+		}
 	}
 	
 }
