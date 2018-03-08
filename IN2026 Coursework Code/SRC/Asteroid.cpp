@@ -3,6 +3,8 @@
 #include "Asteroid.h"
 #include "BoundingShape.h"
 #include "BoundingSphere.h"
+#include "Animation.h"
+#include "AnimationManager.h"
 
 using namespace std;
 
@@ -49,12 +51,24 @@ void Asteroid::OnCollision(const GameObjectList& objects)
 
 	if (GetThisPtr()->GetType() == GameObjectType("Asteroid")) {
 		for (int i = 0; i < 2; i++) {
-			shared_ptr<Shape> nAsteroid_shape = make_shared<Shape>("asteroid.shape");
+			//shared_ptr<Shape> nAsteroid_shape = make_shared<Shape>("asteroid.shape");
+			
+			Animation *anim_ptr = AnimationManager::GetInstance().GetAnimationByName("asteroid1");
+			shared_ptr<Sprite> asteroid_sprite
+				= make_shared<Sprite>(anim_ptr->GetWidth(), anim_ptr->GetHeight(), anim_ptr);
+			asteroid_sprite->SetLoopAnimation(true);
+
+
 			shared_ptr<GameObject> nAsteroid = make_shared<Asteroid>("miniAsteroid");
-			nAsteroid->SetShape(nAsteroid_shape);
+			//nAsteroid->SetShape(nAsteroid_shape);
+			
+			
+			
 			nAsteroid->SetPosition(GetThisPtr()->GetPosition());
-			nAsteroid->SetScale(GetThisPtr()->GetScale() / 1);
+			//nAsteroid->SetScale(GetThisPtr()->GetScale() / 1);
+			nAsteroid->SetScale(0.1f);
 			nAsteroid->SetBoundingShape(make_shared<BoundingSphere>(nAsteroid->GetThisPtr(), 5.0f));
+			nAsteroid->SetSprite(asteroid_sprite);
 			mWorld->AddObject(nAsteroid);
 		}
 	}
