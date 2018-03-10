@@ -11,6 +11,7 @@
 #include "BoundingSphere.h"
 #include "GUILabel.h"
 #include "Explosion.h"
+#include "BulletPowerUp.h"
 
 // PUBLIC INSTANCE CONSTRUCTORS ///////////////////////////////////////////////
 
@@ -62,6 +63,7 @@ void Asteroids::Start()
 	mGameWorld->AddObject(CreateSpaceship());
 	// Create some asteroids and add them to the world
 	CreateAsteroids(10);
+	CreateBulletPowerUps(2);
 
 	//Create the GUI
 	CreateGUI();
@@ -307,6 +309,15 @@ shared_ptr<GameObject> Asteroids::CreateExplosion()
 	explosion->SetSprite(explosion_sprite);
 	explosion->Reset();
 	return explosion;
+}
+
+void Asteroids::CreateBulletPowerUps(const uint num_powerUps) {
+	for (uint i = 0; i < num_powerUps; i++) {
+		shared_ptr<GameObject> powerUp = make_shared<BulletPowerUp>();
+		powerUp->SetBoundingShape(make_shared<BoundingSphere>(powerUp->GetThisPtr(), 3.0f));
+		powerUp->SetScale(0.5f);
+		mGameWorld->AddObject(powerUp);
+	}
 }
 
 

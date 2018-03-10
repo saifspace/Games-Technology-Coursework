@@ -7,10 +7,12 @@ class BulletPowerUp : public GameObject {
 
 public:
 	BulletPowerUp(void);
-	~BulletPowerUp();
+	~BulletPowerUp(void);
 
 	bool CollisionTest(shared_ptr<GameObject> o);
-	bool OnCollision(const GameObjectList& objects);
+	void OnCollision(const GameObjectList& objects);
+
+	void Render(void);
 
 };
 #endif
