@@ -11,8 +11,8 @@ Bullet::Bullet()
 }
 
 /** Construct a new bullet with given position, velocity, acceleration, angle, rotation and lifespan. */
-Bullet::Bullet(GLVector3f p, GLVector3f v, GLVector3f a, GLfloat h, GLfloat r, int ttl)
-	: GameObject("Bullet", p, v, a, h, r), mTimeToLive(ttl)
+Bullet::Bullet(char const * const type_name, GLVector3f p, GLVector3f v, GLVector3f a, GLfloat h, GLfloat r, int ttl)
+	: GameObject(type_name, p, v, a, h, r), mTimeToLive(ttl)
 {
 }
 

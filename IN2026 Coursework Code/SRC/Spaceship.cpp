@@ -85,7 +85,7 @@ void Spaceship::Shoot(void)
 	// Construct a new bullet
 	if (mPowerUpBullets == 0) {
 		shared_ptr<GameObject> bullet
-		(new Bullet(bullet_position, bullet_velocity, mAcceleration, mAngle, 0, 2000));
+		(new Bullet("Bullet",bullet_position, bullet_velocity, mAcceleration, mAngle, 0, 2000));
 		bullet->SetBoundingShape(make_shared<BoundingSphere>(bullet->GetThisPtr(), 2.0f));
 		bullet->SetShape(mBulletShape);
 
@@ -95,7 +95,7 @@ void Spaceship::Shoot(void)
 	else {
 		shared_ptr<Shape> power_bullet_shape = make_shared<Shape>("power_bullet.shape");
 		shared_ptr<GameObject> bullet
-		(new Bullet(bullet_position, bullet_velocity, mAcceleration, mAngle, 0, 2000));
+		(new Bullet("PowerBullet" ,bullet_position, bullet_velocity, mAcceleration, mAngle, 0, 2000));
 		bullet->SetBoundingShape(make_shared<BoundingSphere>(bullet->GetThisPtr(), 2.0f));
 		bullet->SetShape(power_bullet_shape);
 		mWorld->AddObject(bullet);
