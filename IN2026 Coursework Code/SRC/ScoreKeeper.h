@@ -27,6 +27,10 @@ public:
 			mScore += 5;
 			FireScoreChanged();
 		}
+		if (object->GetType() == GameObjectType("PowerBulletAsteroid")) {
+			mScore += 15;
+			FireScoreChanged();
+		}
 	}
 
 	void AddListener(shared_ptr<IScoreListener> listener)

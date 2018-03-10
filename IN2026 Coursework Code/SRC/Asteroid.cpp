@@ -41,8 +41,12 @@ bool Asteroid::CollisionTest(shared_ptr<GameObject> o)
 	if (GetType() == o->GetType()) return false;
 	if (o->GetType() == GameObjectType("Asteroid") || o->GetType() == GameObjectType("miniAsteroid")) return false;
 	if (o->GetType() == GameObjectType("PowerBullet")) {
-
+		if (this->mType == GameObjectType("Asteroid")) {
+			this->mType = (GameObjectType("PowerBulletAsteroid"));
+		}
+		return mBoundingShape->CollisionTest(o->GetBoundingShape());
 	}
+	if (o->GetType() == GameObjectType("BulletPowerUp")) return false;
 	if (mBoundingShape.get() == NULL) return false;
 	if (o->GetBoundingShape().get() == NULL) return false;
 	return mBoundingShape->CollisionTest(o->GetBoundingShape());
@@ -51,7 +55,7 @@ bool Asteroid::CollisionTest(shared_ptr<GameObject> o)
 void Asteroid::OnCollision(const GameObjectList& objects)
 {
 	mWorld->FlagForRemoval(GetThisPtr());
-
+	
 	if (GetThisPtr()->GetType() == GameObjectType("Asteroid")) {
 		for (int i = 0; i < 2; i++) {
 			//shared_ptr<Shape> nAsteroid_shape = make_shared<Shape>("asteroid.shape");
