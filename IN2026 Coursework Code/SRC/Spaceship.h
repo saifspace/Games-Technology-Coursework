@@ -28,8 +28,11 @@ public:
 	void OnCollision(const GameObjectList &objects);
 
 	// give spaceship two power bullets
-	void SetPowerUpBullets() {
-		mPowerUpBullets += 2;
+	void SetPowerUpBullets(int i) {
+		mPowerUpBullets = i;
+	}
+	int GetPowerBullets() {
+		return mPowerUpBullets;
 	}
 
 private:

@@ -93,6 +93,11 @@ void Asteroids::OnKeyPressed(uchar key, int x, int y)
 	{
 	case ' ':
 		mSpaceship->Shoot();
+		if (mSpaceship->GetPowerBullets() > 0) {
+			int mPowerUpBullets = mSpaceship->GetPowerBullets();
+			mPowerUpBullets -= 1;
+			mSpaceship->SetPowerUpBullets(mPowerUpBullets);
+		}
 		break;
 	default:
 		break;
@@ -165,7 +170,7 @@ void Asteroids::OnObjectRemoved(GameWorld* world, shared_ptr<GameObject> object)
 	}
 
 	if (object->GetType() == GameObjectType("BulletPowerUp")) {
-		mSpaceship->SetPowerUpBullets();
+		mSpaceship->SetPowerUpBullets(2);
 	}
 
 
