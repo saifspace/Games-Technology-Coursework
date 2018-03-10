@@ -63,7 +63,7 @@ void Asteroids::Start()
 	mGameWorld->AddObject(CreateSpaceship());
 	// Create some asteroids and add them to the world
 	CreateAsteroids(10);
-	CreateBulletPowerUps(2);
+	CreateBulletPowerUps(1);
 
 	//Create the GUI
 	CreateGUI();
@@ -162,6 +162,10 @@ void Asteroids::OnObjectRemoved(GameWorld* world, shared_ptr<GameObject> object)
 		{
 			SetTimer(500, START_NEXT_LEVEL);
 		}
+	}
+
+	if (object->GetType() == GameObjectType("BulletPowerUp")) {
+		mSpaceship->SetPowerUpBullets();
 	}
 
 

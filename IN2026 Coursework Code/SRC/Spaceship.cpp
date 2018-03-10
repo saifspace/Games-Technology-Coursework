@@ -83,12 +83,23 @@ void Spaceship::Shoot(void)
 	// Construct a vector for the bullet's velocity
 	GLVector3f bullet_velocity = mVelocity + spaceship_heading * bullet_speed;
 	// Construct a new bullet
-	shared_ptr<GameObject> bullet
+	if (mPowerUpBullets == 0) {
+		shared_ptr<GameObject> bullet
 		(new Bullet(bullet_position, bullet_velocity, mAcceleration, mAngle, 0, 2000));
-	bullet->SetBoundingShape(make_shared<BoundingSphere>(bullet->GetThisPtr(), 2.0f));
-	bullet->SetShape(mBulletShape);
-	// Add the new bullet to the game world
-	mWorld->AddObject(bullet);
+		bullet->SetBoundingShape(make_shared<BoundingSphere>(bullet->GetThisPtr(), 2.0f));
+		bullet->SetShape(mBulletShape);
+
+		// Add the new bullet to the game world
+		mWorld->AddObject(bullet);
+	}
+	else {
+		shared_ptr<Shape> power_bullet_shape = make_shared<Shape>("power_bullet.shape");
+		shared_ptr<GameObject> bullet
+		(new Bullet(bullet_position, bullet_velocity, mAcceleration, mAngle, 0, 2000));
+		bullet->SetBoundingShape(make_shared<BoundingSphere>(bullet->GetThisPtr(), 2.0f));
+		bullet->SetShape(power_bullet_shape);
+		mWorld->AddObject(bullet);
+	}
 
 }
 

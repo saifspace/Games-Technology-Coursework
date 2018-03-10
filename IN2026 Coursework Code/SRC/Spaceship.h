@@ -27,8 +27,14 @@ public:
 	bool CollisionTest(shared_ptr<GameObject> o);
 	void OnCollision(const GameObjectList &objects);
 
+	// give spaceship two power bullets
+	void SetPowerUpBullets() {
+		mPowerUpBullets += 2;
+	}
+
 private:
 	float mThrust;
+	int mPowerUpBullets = 0;
 
 	shared_ptr<Shape> mSpaceshipShape;
 	shared_ptr<Shape> mThrusterShape;
