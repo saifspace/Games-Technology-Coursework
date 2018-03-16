@@ -34,7 +34,7 @@ Asteroids::~Asteroids(void)
 void Asteroids::Start()
 {
 	// Create a shared pointer for the Asteroids game object - DO NOT REMOVE
-	shared_ptr<Asteroids> thisPtr = shared_ptr<Asteroids>(this);
+	thisPtr = shared_ptr<Asteroids>(this);
 
 	// Add this class as a listener of the game world
 	mGameWorld->AddListener(thisPtr.get());
@@ -92,7 +92,7 @@ void Asteroids::OnKeyPressed(uchar key, int x, int y)
 	switch (key)
 	{
 	case ' ':
-		mSpaceship->Shoot();
+		mSpaceship->Shoot(thisPtr);
 		if (mSpaceship->GetPowerBullets() > 0) {
 			int mPowerUpBullets = mSpaceship->GetPowerBullets();
 			mPowerUpBullets -= 1;
@@ -148,19 +148,23 @@ void Asteroids::OnObjectRemoved(GameWorld* world, shared_ptr<GameObject> object)
 		explosion->SetRotation(object->GetRotation());
 		mGameWorld->AddObject(explosion);
 		mAsteroidCount--;
-		mMiniAsteroidCount += 2;
-		/**if (mAsteroidCount <= 0) 
+		//mMiniAsteroidCount += 2;
+		if (mAsteroidCount <= 0 && mMiniAsteroidCount <= 0) 
 		{ 
 			SetTimer(500, START_NEXT_LEVEL); 
-		}**/
+		}
 	}
-	if (object->GetType() == GameObjectType("PowerBulletAsteroid")) {
+	/*if (object->GetType() == GameObjectType("PowerBulletAsteroid")) {
 		shared_ptr<GameObject> explosion = CreateExplosion();
 		explosion->SetPosition(object->GetPosition());
 		explosion->SetRotation(object->GetRotation());
 		mGameWorld->AddObject(explosion);
 		mAsteroidCount--;
-	}
+		if (mAsteroidCount <= 0 && mMiniAsteroidCount <= 0)
+		{
+			SetTimer(500, START_NEXT_LEVEL);
+		}
+	}*/
 
 	if (object->GetType() == GameObjectType("miniAsteroid"))
 	{
@@ -183,6 +187,12 @@ void Asteroids::OnObjectRemoved(GameWorld* world, shared_ptr<GameObject> object)
 
 }
 
+void Asteroids::OnObjectAdded(GameWorld* world, shared_ptr<GameObject> object) {
+	if (object->GetType() == GameObjectType("miniAsteroid")) {
+		mMiniAsteroidCount += 1;
+	}
+}
+
 // PUBLIC INSTANCE METHODS IMPLEMENTING ITimerListener ////////////////////////
 
 void Asteroids::OnTimer(int value)
@@ -196,7 +206,8 @@ void Asteroids::OnTimer(int value)
 	if (value == START_NEXT_LEVEL)
 	{
 		mLevel++;
-		int num_asteroids = 10 + 2 * mLevel;
+		//int num_asteroids = 10 + 2 * mLevel;
+		int num_asteroids = 3;
 		CreateAsteroids(num_asteroids);
 	}
 
@@ -315,6 +326,10 @@ void Asteroids::OnPlayerKilled(int lives_left)
 	}
 }
 
+void Asteroids::OnPowerBulletCollision() {
+	mScoreKeeper.AddPowerBulletPoints();
+}
+
 shared_ptr<GameObject> Asteroids::CreateExplosion()
 {
 	Animation *anim_ptr = AnimationManager::GetInstance().GetAnimationByName("explosion");
@@ -330,7 +345,7 @@ shared_ptr<GameObject> Asteroids::CreateExplosion()
 void Asteroids::CreateBulletPowerUps(const uint num_powerUps) {
 	for (uint i = 0; i < num_powerUps; i++) {
 		shared_ptr<GameObject> powerUp = make_shared<BulletPowerUp>();
-		powerUp->SetBoundingShape(make_shared<BoundingSphere>(powerUp->GetThisPtr(), 3.0f));
+		powerUp->SetBoundingShape(make_shared<BoundingSphere>(powerUp->GetThisPtr(), 5.0f));
 		powerUp->SetScale(0.5f);
 		mGameWorld->AddObject(powerUp);
 	}

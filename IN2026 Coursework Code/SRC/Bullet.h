@@ -3,6 +3,7 @@
 
 #include "GameUtil.h"
 #include "GameObject.h"
+#include "PowerBulletCollisionListener.h"
 
 class Bullet : public GameObject
 {
@@ -19,6 +20,23 @@ public:
 
 	bool CollisionTest(shared_ptr<GameObject> o);
 	void OnCollision(const GameObjectList& objects);
+
+	void AddListener(shared_ptr<PowerBulletCollisionListener> listener)
+	{
+		mListeners.push_back(listener);
+	}
+
+	void FirePowerBulletCollided()
+	{
+		// Send message to all listeners
+		for (PowerBulletCollisionListenerList::iterator lit = mListeners.begin(); lit != mListeners.end(); ++lit) {
+			(*lit)->OnPowerBulletCollision();
+		}
+	}
+
+private:
+	typedef std::list< shared_ptr<PowerBulletCollisionListener> > PowerBulletCollisionListenerList;
+	PowerBulletCollisionListenerList mListeners;
 
 protected:
 	int mTimeToLive;

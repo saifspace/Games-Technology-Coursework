@@ -9,12 +9,13 @@
 #include "ScoreKeeper.h"
 #include "Player.h"
 #include "IPlayerListener.h"
+#include "PowerBulletCollisionListener.h"
 
 class GameObject;
 class Spaceship;
 class GUILabel;
 
-class Asteroids : public GameSession, public IKeyboardListener, public IGameWorldListener, public IScoreListener, public IPlayerListener
+class Asteroids : public GameSession, public IKeyboardListener, public IGameWorldListener, public IScoreListener, public IPlayerListener, public PowerBulletCollisionListener
 {
 public:
 	Asteroids(int argc, char *argv[]);
@@ -41,11 +42,14 @@ public:
 	// Declaration of IGameWorldListener interface //////////////////////////////
 
 	void OnWorldUpdated(GameWorld* world) {}
-	void OnObjectAdded(GameWorld* world, shared_ptr<GameObject> object) {}
+	void OnObjectAdded(GameWorld* world, shared_ptr<GameObject> object);
 	void OnObjectRemoved(GameWorld* world, shared_ptr<GameObject> object);
 
 	// Override the default implementation of ITimerListener ////////////////////
 	void OnTimer(int value);
+
+	// Declaration of PowerBulletCollisionListener interface
+	void OnPowerBulletCollision();
 
 private:
 	shared_ptr<Spaceship> mSpaceship;
@@ -71,6 +75,7 @@ private:
 
 	ScoreKeeper mScoreKeeper;
 	Player mPlayer;
+	shared_ptr<Asteroids> thisPtr;
 };
 
 #endif

@@ -2,6 +2,7 @@
 #define __ASTEROID_H__
 
 #include "GameObject.h"
+#include "ScoreKeeper.h"
 
 class Asteroid : public GameObject
 {

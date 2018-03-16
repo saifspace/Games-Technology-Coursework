@@ -3,6 +3,7 @@
 #include "Bullet.h"
 #include "Spaceship.h"
 #include "BoundingSphere.h"
+#include "PowerBulletCollisionListener.h"
 
 using namespace std;
 
@@ -69,7 +70,7 @@ void Spaceship::Rotate(float r)
 }
 
 /** Shoot a bullet. */
-void Spaceship::Shoot(void)
+void Spaceship::Shoot(shared_ptr<PowerBulletCollisionListener> listener)
 {
 	// Check the world exists
 	if (!mWorld) return;
@@ -84,20 +85,22 @@ void Spaceship::Shoot(void)
 	GLVector3f bullet_velocity = mVelocity + spaceship_heading * bullet_speed;
 	// Construct a new bullet
 	if (mPowerUpBullets == 0) {
-		shared_ptr<GameObject> bullet
+		shared_ptr<Bullet> bullet
 		(new Bullet("Bullet",bullet_position, bullet_velocity, mAcceleration, mAngle, 0, 2000));
 		bullet->SetBoundingShape(make_shared<BoundingSphere>(bullet->GetThisPtr(), 2.0f));
 		bullet->SetShape(mBulletShape);
-
+		bullet->AddListener(listener);
+		
 		// Add the new bullet to the game world
 		mWorld->AddObject(bullet);
 	}
 	else {
 		shared_ptr<Shape> power_bullet_shape = make_shared<Shape>("power_bullet.shape");
-		shared_ptr<GameObject> bullet
+		shared_ptr<Bullet> bullet
 		(new Bullet("PowerBullet" ,bullet_position, bullet_velocity, mAcceleration, mAngle, 0, 2000));
 		bullet->SetBoundingShape(make_shared<BoundingSphere>(bullet->GetThisPtr(), 2.0f));
 		bullet->SetShape(power_bullet_shape);
+		bullet->AddListener(listener);
 		mWorld->AddObject(bullet);
 	}
 

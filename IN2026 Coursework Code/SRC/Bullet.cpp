@@ -48,13 +48,22 @@ void Bullet::Update(int t)
 
 bool Bullet::CollisionTest(shared_ptr<GameObject> o)
 {
-	if (o->GetType() != GameObjectType("Asteroid")) return false;
+	if (o->GetType() == GameObjectType("Asteroid") || o->GetType() == GameObjectType("miniAsteroid")) {  
+		return mBoundingShape->CollisionTest(o->GetBoundingShape());
+	}
 	if (mBoundingShape.get() == NULL) return false;
 	if (o->GetBoundingShape().get() == NULL) return false;
-	return mBoundingShape->CollisionTest(o->GetBoundingShape());
+	return false;
+	//return mBoundingShape->CollisionTest(o->GetBoundingShape());
 }
 
 void Bullet::OnCollision(const GameObjectList& objects)
 {
+	bool asteroid = objects.front().get()->GetType() == GameObjectType("Asteroid");
+
+	if (GetThisPtr()->GetType() == GameObjectType("PowerBullet") && asteroid) {
+		FirePowerBulletCollided();
+	}
+
 	mWorld->FlagForRemoval(GetThisPtr());
 }

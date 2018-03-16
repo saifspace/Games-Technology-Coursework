@@ -4,6 +4,7 @@
 #include "GameUtil.h"
 #include "GameObject.h"
 #include "Shape.h"
+#include "PowerBulletCollisionListener.h"
 
 class Spaceship : public GameObject
 {
@@ -18,7 +19,7 @@ public:
 
 	virtual void Thrust(float t);
 	virtual void Rotate(float r);
-	virtual void Shoot(void);
+	virtual void Shoot(shared_ptr<PowerBulletCollisionListener> listener);
 
 	void SetSpaceshipShape(shared_ptr<Shape> spaceship_shape) { mSpaceshipShape = spaceship_shape; }
 	void SetThrusterShape(shared_ptr<Shape> thruster_shape) { mThrusterShape = thruster_shape; }

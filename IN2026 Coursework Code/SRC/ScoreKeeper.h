@@ -27,10 +27,15 @@ public:
 			mScore += 5;
 			FireScoreChanged();
 		}
-		if (object->GetType() == GameObjectType("PowerBulletAsteroid")) {
+		/**if (object->GetType() == GameObjectType("PowerBulletAsteroid")) {
 			mScore += 15;
 			FireScoreChanged();
-		}
+		}**/
+	}
+
+	void OnPowerBulletCollision() {
+		mScore += 10;
+		FireScoreChanged();
 	}
 
 	void AddListener(shared_ptr<IScoreListener> listener)
@@ -44,6 +49,11 @@ public:
 		for (ScoreListenerList::iterator lit = mListeners.begin(); lit != mListeners.end(); ++lit) {
 			(*lit)->OnScoreChanged(mScore);
 		}
+	}
+
+	void AddPowerBulletPoints() {
+		mScore += 10;
+		FireScoreChanged();
 	}
 
 private:
