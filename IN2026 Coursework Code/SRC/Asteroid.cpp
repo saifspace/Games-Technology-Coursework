@@ -41,12 +41,6 @@ bool Asteroid::CollisionTest(shared_ptr<GameObject> o)
 {
 	if (GetType() == o->GetType()) return false;
 	if (o->GetType() == GameObjectType("Asteroid") || o->GetType() == GameObjectType("miniAsteroid")) return false;
-	/**if (o->GetType() == GameObjectType("PowerBullet")) {
-		if (this->mType == GameObjectType("Asteroid")) {
-			this->mType = (GameObjectType("PowerBulletAsteroid"));
-		}
-		return mBoundingShape->CollisionTest(o->GetBoundingShape());
-	}**/
 	if (o->GetType() == GameObjectType("BulletPowerUp")) return false;
 	if (mBoundingShape.get() == NULL) return false;
 	if (o->GetBoundingShape().get() == NULL) return false;
@@ -55,20 +49,12 @@ bool Asteroid::CollisionTest(shared_ptr<GameObject> o)
 
 void Asteroid::OnCollision(const GameObjectList& objects)
 {
- 	
 	bool powerBullet = objects.front().get()->GetType() == GameObjectType("PowerBullet");
-
-	/**if (powerBullet && GetThisPtr()->GetType() == GameObjectType("Asteroid")) {
-		//mScoreKeeper.OnPowerBulletCollision();
-		mWorld->FireObjectRemoved(GetThisPtr());
-		mWorld->FireObjectAdded(GetThisPtr());
-	}**/
 
 	mWorld->FlagForRemoval(GetThisPtr());
 	
 	if (GetThisPtr()->GetType() == GameObjectType("Asteroid") && powerBullet == false) {
 		for (int i = 0; i < 2; i++) {
-			//shared_ptr<Shape> nAsteroid_shape = make_shared<Shape>("asteroid.shape");
 			
 			Animation *anim_ptr = AnimationManager::GetInstance().GetAnimationByName("asteroid1");
 			shared_ptr<Sprite> asteroid_sprite
@@ -77,12 +63,10 @@ void Asteroid::OnCollision(const GameObjectList& objects)
 
 
 			shared_ptr<GameObject> nAsteroid = make_shared<Asteroid>("miniAsteroid");
-			//nAsteroid->SetShape(nAsteroid_shape);
 			
 			
 			
 			nAsteroid->SetPosition(GetThisPtr()->GetPosition());
-			//nAsteroid->SetScale(GetThisPtr()->GetScale() / 1);
 			nAsteroid->SetScale(0.1f);
 			nAsteroid->SetBoundingShape(make_shared<BoundingSphere>(nAsteroid->GetThisPtr(), 5.0f));
 			nAsteroid->SetSprite(asteroid_sprite);
