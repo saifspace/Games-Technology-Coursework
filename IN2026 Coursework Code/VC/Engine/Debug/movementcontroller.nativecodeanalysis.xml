@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\</FILEPATH>
+      <FILENAME>stdlib.h</FILENAME>
+      <LINE>50</LINE>
+      <COLUMN>43</COLUMN>
+    </SFA>
+    <DEFECTCODE>28301</DEFECTCODE>
+    <DESCRIPTION>No annotations for first declaration of 'exit'. See c:\users\saif\desktop\games tech\coursework\in2026 coursework code\include\gl\glut.h(147). </DESCRIPTION>
+    <FUNCTION>exit</FUNCTION>
+    <DECORATED>exit</DECORATED>
+    <FUNCLINE>50</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

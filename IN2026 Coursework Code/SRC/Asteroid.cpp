@@ -40,7 +40,7 @@ Asteroid::~Asteroid(void)
 bool Asteroid::CollisionTest(shared_ptr<GameObject> o)
 {
 	if (GetType() == o->GetType()) return false;
-	if (o->GetType() == GameObjectType("Asteroid") || o->GetType() == GameObjectType("miniAsteroid")) return false;
+	if (o->GetType() == GameObjectType("Asteroid") || o->GetType() == GameObjectType("MiniAsteroid")) return false;
 	if (o->GetType() == GameObjectType("BulletPowerUp")) return false;
 	if (mBoundingShape.get() == NULL) return false;
 	if (o->GetBoundingShape().get() == NULL) return false;
@@ -54,24 +54,24 @@ void Asteroid::OnCollision(const GameObjectList& objects)
 	mWorld->FlagForRemoval(GetThisPtr());
 	
 	if (GetThisPtr()->GetType() == GameObjectType("Asteroid") && powerBullet == false) {
-		for (int i = 0; i < 2; i++) {
-			
-			Animation *anim_ptr = AnimationManager::GetInstance().GetAnimationByName("asteroid1");
-			shared_ptr<Sprite> asteroid_sprite
-				= make_shared<Sprite>(anim_ptr->GetWidth(), anim_ptr->GetHeight(), anim_ptr);
-			asteroid_sprite->SetLoopAnimation(true);
-
-
-			shared_ptr<GameObject> nAsteroid = make_shared<Asteroid>("miniAsteroid");
-			
-			
-			
-			nAsteroid->SetPosition(GetThisPtr()->GetPosition());
-			nAsteroid->SetScale(0.1f);
-			nAsteroid->SetBoundingShape(make_shared<BoundingSphere>(nAsteroid->GetThisPtr(), 5.0f));
-			nAsteroid->SetSprite(asteroid_sprite);
-			mWorld->AddObject(nAsteroid);
-		}
+		CreateMiniAsteroids();
 	}
 	
+}
+
+void Asteroid::CreateMiniAsteroids() {
+	for (int i = 0; i < 2; i++) {
+
+		Animation *anim_ptr = AnimationManager::GetInstance().GetAnimationByName("asteroid1");
+		shared_ptr<Sprite> asteroid_sprite
+			= make_shared<Sprite>(anim_ptr->GetWidth(), anim_ptr->GetHeight(), anim_ptr);
+		asteroid_sprite->SetLoopAnimation(true);
+		shared_ptr<GameObject> nAsteroid = make_shared<Asteroid>("MiniAsteroid");
+		nAsteroid->SetPosition(GetThisPtr()->GetPosition());
+		nAsteroid->SetScale(0.1f);
+		nAsteroid->SetBoundingShape(make_shared<BoundingSphere>(nAsteroid->GetThisPtr(), 5.0f));
+		nAsteroid->SetSprite(asteroid_sprite);
+		mWorld->AddObject(nAsteroid);
+	}
+
 }

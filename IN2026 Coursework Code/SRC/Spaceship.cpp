@@ -110,7 +110,7 @@ bool Spaceship::CollisionTest(shared_ptr<GameObject> o)
 {
 	//if (o->GetType() != GameObjectType("Asteroid")) return false;
 	
-	if (o->GetType() == GameObjectType("Asteroid") || o->GetType() == GameObjectType("miniAsteroid")) {
+	if (o->GetType() == GameObjectType("Asteroid") || o->GetType() == GameObjectType("MiniAsteroid")) {
 		return mBoundingShape->CollisionTest(o->GetBoundingShape());
 	} else {
 		return false;

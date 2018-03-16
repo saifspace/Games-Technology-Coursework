@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\saif\desktop\games tech\coursework\in2026 coursework code\include\gl\</FILEPATH>
+      <FILENAME>glut.h</FILENAME>
+      <LINE>147</LINE>
+      <COLUMN>51</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'exit': this instance has no annotations. See c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdlib.h(50). </DESCRIPTION>
+    <FUNCTION>exit</FUNCTION>
+    <DECORATED>exit</DECORATED>
+    <FUNCLINE>147</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\saif\desktop\games tech\coursework\in2026 coursework code\src\</FILEPATH>
+      <FILENAME>image.cpp</FILENAME>
+      <LINE>46</LINE>
+      <COLUMN>21</COLUMN>
+    </SFA>
+    <DEFECTCODE>6386</DEFECTCODE>
+    <DESCRIPTION>Buffer overrun while writing to 'mPixelData':  the writable size is '4*mNumPixels*1' bytes, but '5' bytes might be written.</DESCRIPTION>
+    <FUNCTION>Image::{ctor}</FUNCTION>
+    <DECORATED>??0Image@@QAE@PAV0@IIII@Z</DECORATED>
+    <FUNCLINE>33</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\saif\desktop\games tech\coursework\in2026 coursework code\src\</FILEPATH>
+        <FILENAME>image.cpp</FILENAME>
+        <LINE>34</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\saif\desktop\games tech\coursework\in2026 coursework code\src\</FILEPATH>
+        <FILENAME>image.cpp</FILENAME>
+        <LINE>35</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\saif\desktop\games tech\coursework\in2026 coursework code\src\</FILEPATH>
+        <FILENAME>image.cpp</FILENAME>
+        <LINE>36</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\saif\desktop\games tech\coursework\in2026 coursework code\src\</FILEPATH>
+        <FILENAME>image.cpp</FILENAME>
+        <LINE>38</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\saif\desktop\games tech\coursework\in2026 coursework code\src\</FILEPATH>
+        <FILENAME>image.cpp</FILENAME>
+        <LINE>39</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\saif\desktop\games tech\coursework\in2026 coursework code\src\</FILEPATH>
+        <FILENAME>image.cpp</FILENAME>
+        <LINE>40</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\saif\desktop\games tech\coursework\in2026 coursework code\src\</FILEPATH>
+        <FILENAME>image.cpp</FILENAME>
+        <LINE>42</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\saif\desktop\games tech\coursework\in2026 coursework code\src\</FILEPATH>
+        <FILENAME>image.cpp</FILENAME>
+        <LINE>42</LINE>
+        <COLUMN>20</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this loop, (assume 'j&lt;height')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\saif\desktop\games tech\coursework\in2026 coursework code\src\</FILEPATH>
+        <FILENAME>image.cpp</FILENAME>
+        <LINE>44</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\saif\desktop\games tech\coursework\in2026 coursework code\src\</FILEPATH>
+        <FILENAME>image.cpp</FILENAME>
+        <LINE>44</LINE>
+        <COLUMN>21</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this loop, (assume 'i&lt;width')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\saif\desktop\games tech\coursework\in2026 coursework code\src\</FILEPATH>
+        <FILENAME>image.cpp</FILENAME>
+        <LINE>46</LINE>
+        <COLUMN>21</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\saif\desktop\games tech\coursework\in2026 coursework code\src\</FILEPATH>
+        <FILENAME>image.cpp</FILENAME>
+        <LINE>47</LINE>
+        <COLUMN>21</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\saif\desktop\games tech\coursework\in2026 coursework code\src\</FILEPATH>
+        <FILENAME>image.cpp</FILENAME>
+        <LINE>48</LINE>
+        <COLUMN>21</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\saif\desktop\games tech\coursework\in2026 coursework code\src\</FILEPATH>
+        <FILENAME>image.cpp</FILENAME>
+        <LINE>49</LINE>
+        <COLUMN>21</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\saif\desktop\games tech\coursework\in2026 coursework code\src\</FILEPATH>
+        <FILENAME>image.cpp</FILENAME>
+        <LINE>44</LINE>
+        <COLUMN>31</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\saif\desktop\games tech\coursework\in2026 coursework code\src\</FILEPATH>
+        <FILENAME>image.cpp</FILENAME>
+        <LINE>44</LINE>
+        <COLUMN>21</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Exit this loop, ('i&lt;width' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\saif\desktop\games tech\coursework\in2026 coursework code\src\</FILEPATH>
+        <FILENAME>image.cpp</FILENAME>
+        <LINE>42</LINE>
+        <COLUMN>31</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\saif\desktop\games tech\coursework\in2026 coursework code\src\</FILEPATH>
+        <FILENAME>image.cpp</FILENAME>
+        <LINE>42</LINE>
+        <COLUMN>20</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Continue this loop, (assume 'j&lt;height')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\saif\desktop\games tech\coursework\in2026 coursework code\src\</FILEPATH>
+        <FILENAME>image.cpp</FILENAME>
+        <LINE>44</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\saif\desktop\games tech\coursework\in2026 coursework code\src\</FILEPATH>
+        <FILENAME>image.cpp</FILENAME>
+        <LINE>44</LINE>
+        <COLUMN>21</COLUMN>
+        <KEYEVENT>
+          <ID>5</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this loop, (assume 'i&lt;width')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\saif\desktop\games tech\coursework\in2026 coursework code\src\</FILEPATH>
+        <FILENAME>image.cpp</FILENAME>
+        <LINE>46</LINE>
+        <COLUMN>21</COLUMN>
+        <KEYEVENT>
+          <ID>6</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'dst' may equal 1</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\saif\desktop\games tech\coursework\in2026 coursework code\src\</FILEPATH>
+        <FILENAME>image.cpp</FILENAME>
+        <LINE>46</LINE>
+        <COLUMN>21</COLUMN>
+        <KEYEVENT>
+          <ID>7</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>Invalid write to 'mPixelData[4]', (writable range is 0 to 3)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT>
+</DEFECTS>

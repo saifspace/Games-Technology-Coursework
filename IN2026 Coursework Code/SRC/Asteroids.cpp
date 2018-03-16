@@ -155,7 +155,7 @@ void Asteroids::OnObjectRemoved(GameWorld* world, shared_ptr<GameObject> object)
 		}
 	}
 
-	if (object->GetType() == GameObjectType("miniAsteroid"))
+	if (object->GetType() == GameObjectType("MiniAsteroid"))
 	{
 		shared_ptr<GameObject> explosion = CreateExplosion();
 		explosion->SetPosition(object->GetPosition());
@@ -177,7 +177,7 @@ void Asteroids::OnObjectRemoved(GameWorld* world, shared_ptr<GameObject> object)
 }
 
 void Asteroids::OnObjectAdded(GameWorld* world, shared_ptr<GameObject> object) {
-	if (object->GetType() == GameObjectType("miniAsteroid")) {
+	if (object->GetType() == GameObjectType("MiniAsteroid")) {
 		mMiniAsteroidCount += 1;
 	}
 }

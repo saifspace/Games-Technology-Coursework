@@ -23,15 +23,10 @@ public:
  			mScore += 10;
 			FireScoreChanged();
 		}
-		if (object->GetType() == GameObjectType("miniAsteroid")) {
+		if (object->GetType() == GameObjectType("MiniAsteroid")) {
 			mScore += 5;
 			FireScoreChanged();
 		}
-	}
-
-	void OnPowerBulletCollision() {
-		mScore += 10;
-		FireScoreChanged();
 	}
 
 	void AddListener(shared_ptr<IScoreListener> listener)

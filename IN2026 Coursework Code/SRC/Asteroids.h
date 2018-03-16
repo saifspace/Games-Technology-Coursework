@@ -60,7 +60,6 @@ private:
 	uint mLevel;
 	uint mAsteroidCount;
 	uint mMiniAsteroidCount = 0;
-	uint mPowerBulletScore = 0;
 
 	void ResetSpaceship();
 	shared_ptr<GameObject> CreateSpaceship();
