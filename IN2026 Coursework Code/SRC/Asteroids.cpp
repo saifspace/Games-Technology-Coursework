@@ -216,6 +216,12 @@ shared_ptr<GameObject> Asteroids::CreateSpaceship()
 	mSpaceship->SetBoundingShape(make_shared<BoundingSphere>(mSpaceship->GetThisPtr(), 4.0f));
 	shared_ptr<Shape> bullet_shape = make_shared<Shape>("bullet.shape");
 	mSpaceship->SetBulletShape(bullet_shape);
+	
+	shared_ptr<Shape> thruster_shape = make_shared<Shape>("thruster.shape");
+	mSpaceship->SetThrusterShape(thruster_shape);
+	shared_ptr<Shape> shield_shape = make_shared<Shape>("shield.shape");
+	mSpaceship->SetShieldShape(shield_shape);
+
 	Animation *anim_ptr = AnimationManager::GetInstance().GetAnimationByName("spaceship");
 	shared_ptr<Sprite> spaceship_sprite =
 		make_shared<Sprite>(anim_ptr->GetWidth(), anim_ptr->GetHeight(), anim_ptr);

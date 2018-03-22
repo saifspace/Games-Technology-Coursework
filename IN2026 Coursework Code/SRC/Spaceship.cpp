@@ -51,6 +51,10 @@ void Spaceship::Render(void)
 		mThrusterShape->Render();
 	}
 
+	if ((mShield) && mShieldShape.get() != NULL) {
+		mShieldShape->Render();
+	}
+
 	GameObject::Render();
 }
 
