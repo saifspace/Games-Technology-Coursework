@@ -12,6 +12,7 @@
 #include "GUILabel.h"
 #include "Explosion.h"
 #include "BulletPowerUp.h"
+#include "ShieldPowerUp.h"
 
 // PUBLIC INSTANCE CONSTRUCTORS ///////////////////////////////////////////////
 
@@ -172,7 +173,10 @@ void Asteroids::OnObjectRemoved(GameWorld* world, shared_ptr<GameObject> object)
 	if (object->GetType() == GameObjectType("BulletPowerUp")) {
 		mSpaceship->SetPowerUpBullets(2);
 	}
-
+	if (object->GetType() == GameObjectType("ShieldPowerUp")) {
+		mSpaceship->SetShield(true);
+		SetTimer(60000, SHIELD_TIME_OUT);
+	}
 
 }
 
@@ -203,6 +207,10 @@ void Asteroids::OnTimer(int value)
 	if (value == SHOW_GAME_OVER)
 	{
 		mGameOverLabel->SetVisible(true);
+	}
+
+	if (value == SHIELD_TIME_OUT) {
+		mSpaceship->SetShield(false);
 	}
 
 }
@@ -343,6 +351,11 @@ void Asteroids::CreateBulletPowerUps(const uint num_powerUps) {
 		powerUp->SetBoundingShape(make_shared<BoundingSphere>(powerUp->GetThisPtr(), 5.0f));
 		powerUp->SetScale(0.5f);
 		mGameWorld->AddObject(powerUp);
+
+		shared_ptr<GameObject> shieldPowerUp = make_shared<ShieldPowerUp>();
+		shieldPowerUp->SetBoundingShape(make_shared<BoundingSphere>(shieldPowerUp->GetThisPtr(), 5.0f));
+		shieldPowerUp->SetScale(0.5f);
+		mGameWorld->AddObject(shieldPowerUp);
 	}
 }
 

@@ -72,6 +72,8 @@ private:
 	const static uint START_NEXT_LEVEL = 1;
 	const static uint CREATE_NEW_PLAYER = 2;
 
+	const static uint SHIELD_TIME_OUT = 3;
+
 	ScoreKeeper mScoreKeeper;
 	Player mPlayer;
 	shared_ptr<Asteroids> thisPtr;

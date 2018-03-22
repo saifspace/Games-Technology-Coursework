@@ -1,6 +1,5 @@
 #include "ShieldPowerUp.h"
 #include "GameUtil.h"
-#include "BulletPowerup.h"
 #include "BoundingShape.h"
 #include "BoundingSphere.h"
 
@@ -23,13 +22,14 @@ bool ShieldPowerUp::CollisionTest(shared_ptr<GameObject> o) {
 	if (o->GetType() == GameObjectType("Asteroid")) return false;
 	if (o->GetType() == GameObjectType("MiniAsteroid")) return false;
 	if (o->GetType() == GameObjectType("Bullet")) return false;
+	if (o->GetType() == GameObjectType("BulletPowerUp")) return false;
 	if (mBoundingShape.get() == NULL) return false;
 	if (o->GetBoundingShape().get() == NULL) return false;
 	return mBoundingShape->CollisionTest(o->GetBoundingShape());
 
 }
 
-void BulletPowerUp::OnCollision(const GameObjectList& objects) {
+void ShieldPowerUp::OnCollision(const GameObjectList& objects) {
 	mWorld->FlagForRemoval(GetThisPtr());
 }
 

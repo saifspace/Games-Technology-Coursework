@@ -51,7 +51,7 @@ void Spaceship::Render(void)
 		mThrusterShape->Render();
 	}
 
-	if ((mShield) && mShieldShape.get() != NULL) {
+	if ((mShield == true) && mShieldShape.get() != NULL) {
 		mShieldShape->Render();
 	}
 
@@ -126,5 +126,7 @@ bool Spaceship::CollisionTest(shared_ptr<GameObject> o)
 
 void Spaceship::OnCollision(const GameObjectList &objects)
 {
-	mWorld->FlagForRemoval(GetThisPtr());
+	if (mShield != true) {
+		mWorld->FlagForRemoval(GetThisPtr());
+	}
 }
