@@ -175,7 +175,7 @@ void Asteroids::OnObjectRemoved(GameWorld* world, shared_ptr<GameObject> object)
 	}
 	if (object->GetType() == GameObjectType("ShieldPowerUp")) {
 		mSpaceship->SetShield(true);
-		SetTimer(60000, SHIELD_TIME_OUT);
+		SetTimer(5000, SHIELD_TIME_OUT);
 	}
 
 }
