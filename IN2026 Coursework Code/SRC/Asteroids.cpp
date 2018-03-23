@@ -13,6 +13,7 @@
 #include "Explosion.h"
 #include "BulletPowerUp.h"
 #include "ShieldPowerUp.h"
+#include "AlienShip.h"
 
 // PUBLIC INSTANCE CONSTRUCTORS ///////////////////////////////////////////////
 
@@ -62,9 +63,12 @@ void Asteroids::Start()
 
 	// Create a spaceship and add it to the world
 	mGameWorld->AddObject(CreateSpaceship());
+
+	mGameWorld->AddObject(CreateAlienShip());
+
 	// Create some asteroids and add them to the world
-	CreateAsteroids(3);
-	CreateBulletPowerUps(1);
+	//CreateAsteroids(3);
+	//CreateBulletPowerUps(1);
 
 	//Create the GUI
 	CreateGUI();
@@ -242,6 +246,18 @@ shared_ptr<GameObject> Asteroids::CreateSpaceship()
 
 }
 
+shared_ptr<AlienShip> Asteroids::CreateAlienShip() {
+	
+	mAlienShip = make_shared<AlienShip>();
+	mAlienShip->SetBoundingShape(make_shared<BoundingSphere>(mAlienShip->GetThisPtr(), 4.0f));
+	mAlienShip->SetOuterBoundingShape(make_shared<BoundingSphere>(mAlienShip->GetThisPtr(), 25.0f));
+	mAlienShip->AddListener(thisPtr);
+	mAlienShip->SetPosition(GLVector3f(0, 20, 0));
+
+	return mAlienShip;
+
+}
+
 void Asteroids::CreateAsteroids(const uint num_asteroids)
 {
 	mAsteroidCount = num_asteroids;
@@ -331,6 +347,19 @@ void Asteroids::OnPlayerKilled(int lives_left)
 
 void Asteroids::OnPowerBulletCollision() {
 	mScoreKeeper.AddPowerBulletPoints();
+}
+
+void Asteroids::OnOuterBoundDetection() {
+	GLfloat alienX = mAlienShip->GetPosition().x;
+	GLfloat alienY = mAlienShip->GetPosition().y;
+
+	GLfloat playerX = mSpaceship->GetPosition().x;
+	GLfloat playerY = mSpaceship->GetPosition().y;
+
+	float angle = atan2(playerY - alienY, playerX - alienX);
+	angle = angle * (180 / M_PI);
+	mAlienShip->SetAngle(angle);
+
 }
 
 shared_ptr<GameObject> Asteroids::CreateExplosion()

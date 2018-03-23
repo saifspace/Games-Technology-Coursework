@@ -10,12 +10,14 @@
 #include "Player.h"
 #include "IPlayerListener.h"
 #include "PowerBulletCollisionListener.h"
+#include "OuterBoundingShapeListener.h"
+#include "AlienShip.h"
 
 class GameObject;
 class Spaceship;
 class GUILabel;
 
-class Asteroids : public GameSession, public IKeyboardListener, public IGameWorldListener, public IScoreListener, public IPlayerListener, public PowerBulletCollisionListener
+class Asteroids : public GameSession, public IKeyboardListener, public IGameWorldListener, public IScoreListener, public IPlayerListener, public PowerBulletCollisionListener, public OuterBoundingShapeListener
 {
 public:
 	Asteroids(int argc, char *argv[]);
@@ -50,12 +52,15 @@ public:
 
 	// Declaration of PowerBulletCollisionListener interface
 	void OnPowerBulletCollision();
+	void OnOuterBoundDetection();
 
 private:
 	shared_ptr<Spaceship> mSpaceship;
 	shared_ptr<GUILabel> mScoreLabel;
 	shared_ptr<GUILabel> mLivesLabel;
 	shared_ptr<GUILabel> mGameOverLabel;
+
+	shared_ptr<AlienShip> mAlienShip;
 
 	uint mLevel;
 	uint mAsteroidCount;
@@ -67,6 +72,7 @@ private:
 	void CreateAsteroids(const uint num_asteroids);
 	shared_ptr<GameObject> CreateExplosion();
 	void CreateBulletPowerUps(const uint num_powerUps);
+	shared_ptr<AlienShip> CreateAlienShip();
 	
 	const static uint SHOW_GAME_OVER = 0;
 	const static uint START_NEXT_LEVEL = 1;
