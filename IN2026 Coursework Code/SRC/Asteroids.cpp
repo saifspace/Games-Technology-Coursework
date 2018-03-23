@@ -65,6 +65,7 @@ void Asteroids::Start()
 	mGameWorld->AddObject(CreateSpaceship());
 
 	mGameWorld->AddObject(CreateAlienShip());
+	SetTimer(3000, ROTATE_ALIEN_SHIP);
 
 	// Create some asteroids and add them to the world
 	//CreateAsteroids(3);
@@ -220,9 +221,23 @@ void Asteroids::OnTimer(int value)
 	if (value == THRUST_TIME_OUT) {
 		mAlienShip->Thrust(0);
 		mAlienShip->Rotate(0);
-		mAlienShip->Stop();
+		mAlienShip->StopShip();
 	}
 
+	if (value == ROTATE_ALIEN_SHIP) {
+		mAlienShip->Rotate(90);
+		mAlienShip->SetAngle(mAlienShip->GetRotation());
+		mAlienShip->StopShip();
+		mAlienShip->MoveShip();
+		SetTimer(1000, THRUST_TIME_OUT);
+		SetTimer(1100, MOVE_ALIEN_SHIP);
+		SetTimer(3000, ROTATE_ALIEN_SHIP);
+	}
+
+	if (value == MOVE_ALIEN_SHIP) {
+		mAlienShip->MoveShip();
+	}
+	
 }
 
 // PROTECTED INSTANCE METHODS /////////////////////////////////////////////////
@@ -262,7 +277,7 @@ shared_ptr<AlienShip> Asteroids::CreateAlienShip() {
 	mAlienShip->AddListener(thisPtr);
 
 	mAlienShip->SetPosition(GLVector3f(0, 30, 0));
-
+	mAlienShip->MoveShip();
 	return mAlienShip;
 
 }
@@ -320,6 +335,7 @@ void Asteroids::CreateGUI()
 
 }
 
+
 void Asteroids::OnScoreChanged(int score)
 {
 	// Format the score message using an string-based stream
@@ -361,6 +377,7 @@ void Asteroids::OnPowerBulletCollision() {
 void Asteroids::OnOuterBoundDetection(GameObjectType obj) {
 	
 	if (obj == GameObjectType("Spaceship")) {
+		mAlienShip->StopShip();
 		GLfloat alienX = mAlienShip->GetPosition().x;
 		GLfloat alienY = mAlienShip->GetPosition().y;
 

@@ -94,9 +94,14 @@ void AlienShip::Shoot(void)
 	mWorld->AddObject(bullet);
 }
 
-void AlienShip::Stop() {
+void AlienShip::StopShip() {
 	mVelocity.x = 0;
 	mVelocity.y = 0;
+}
+
+void AlienShip::MoveShip() {
+	mVelocity.x = 10*cos(DEG2RAD*mAngle);
+	mVelocity.y = 10*sin(DEG2RAD*mAngle);
 }
 
 bool AlienShip::CollisionTest(shared_ptr<GameObject> o)

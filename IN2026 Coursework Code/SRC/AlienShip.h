@@ -20,7 +20,8 @@ public:
 	virtual void Thrust(float t);
 	virtual void Rotate(float r);
 	virtual void Shoot(void);
-	virtual void Stop();
+	virtual void StopShip();
+	virtual void MoveShip();
 
 	void SetAlienShipShape(shared_ptr<Shape> AlienShip_shape) { mAlienShipShape = AlienShip_shape; }
 	void SetThrusterShape(shared_ptr<Shape> thruster_shape) { mThrusterShape = thruster_shape; }

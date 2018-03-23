@@ -79,7 +79,9 @@ private:
 	const static uint CREATE_NEW_PLAYER = 2;
 
 	const static uint SHIELD_TIME_OUT = 3;
-	const static uint THRUST_TIME_OUT = 3;
+	const static uint THRUST_TIME_OUT = 4;
+	const static uint ROTATE_ALIEN_SHIP = 5;
+	const static uint MOVE_ALIEN_SHIP = 6;
 
 	ScoreKeeper mScoreKeeper;
 	Player mPlayer;
