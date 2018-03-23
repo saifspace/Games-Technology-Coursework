@@ -88,8 +88,15 @@ void AlienShip::Shoot(void)
 	GLVector3f bullet_velocity = mVelocity + spaceship_heading * bullet_speed;
 
 	shared_ptr<GameObject> bullet(new Bullet("EnemyBullet",bullet_position, bullet_velocity, mAcceleration, mAngle, 0, 2000));
+	bullet->SetBoundingShape(make_shared<BoundingSphere>(bullet->GetThisPtr(), 2.0f));
+	bullet->SetShape(mBulletShape);
 
 	mWorld->AddObject(bullet);
+}
+
+void AlienShip::Stop() {
+	mVelocity.x = 0;
+	mVelocity.y = 0;
 }
 
 bool AlienShip::CollisionTest(shared_ptr<GameObject> o)
@@ -103,7 +110,14 @@ bool AlienShip::CollisionTest(shared_ptr<GameObject> o)
 	if (o->GetType() == GameObjectType("Spaceship")) {
 		bool collision = mOuterBoundingShape->CollisionTest(o->GetBoundingShape());
 		if (collision == true) {
-			FireDetected();
+			FireDetected(o->GetType());
+		}
+	}
+	
+	if (o->GetType() == GameObjectType("Bullet")) {
+		bool collision = mOuterBoundingShape->CollisionTest(o->GetBoundingShape());
+		if (collision == true) {
+			FireDetected(o->GetType());
 		}
 	}
 
@@ -114,5 +128,5 @@ bool AlienShip::CollisionTest(shared_ptr<GameObject> o)
 
 void AlienShip::OnCollision(const GameObjectList &objects)
 {
-		mWorld->FlagForRemoval(GetThisPtr());
+		//mWorld->FlagForRemoval(GetThisPtr());
 }

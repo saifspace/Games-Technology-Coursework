@@ -20,6 +20,7 @@ public:
 	virtual void Thrust(float t);
 	virtual void Rotate(float r);
 	virtual void Shoot(void);
+	virtual void Stop();
 
 	void SetAlienShipShape(shared_ptr<Shape> AlienShip_shape) { mAlienShipShape = AlienShip_shape; }
 	void SetThrusterShape(shared_ptr<Shape> thruster_shape) { mThrusterShape = thruster_shape; }
@@ -31,11 +32,11 @@ public:
 	{
 		mListeners.push_back(listener);
 	}
-	void FireDetected()
+	void FireDetected(GameObjectType obj)
 	{
 		// Send message to all listeners
 		for (OuterBoundingShapeListenerList::iterator lit = mListeners.begin(); lit != mListeners.end(); ++lit) {
-			(*lit)->OnOuterBoundDetection();
+			(*lit)->OnOuterBoundDetection(obj);
 		}
 	}
 

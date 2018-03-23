@@ -217,6 +217,12 @@ void Asteroids::OnTimer(int value)
 		mSpaceship->SetShield(false);
 	}
 
+	if (value == THRUST_TIME_OUT) {
+		mAlienShip->Thrust(0);
+		mAlienShip->Rotate(0);
+		mAlienShip->Stop();
+	}
+
 }
 
 // PROTECTED INSTANCE METHODS /////////////////////////////////////////////////
@@ -251,8 +257,11 @@ shared_ptr<AlienShip> Asteroids::CreateAlienShip() {
 	mAlienShip = make_shared<AlienShip>();
 	mAlienShip->SetBoundingShape(make_shared<BoundingSphere>(mAlienShip->GetThisPtr(), 4.0f));
 	mAlienShip->SetOuterBoundingShape(make_shared<BoundingSphere>(mAlienShip->GetThisPtr(), 25.0f));
+	shared_ptr<Shape> bullet_shape = make_shared<Shape>("bullet.shape");
+	mAlienShip->SetBulletShape(bullet_shape);
 	mAlienShip->AddListener(thisPtr);
-	mAlienShip->SetPosition(GLVector3f(0, 20, 0));
+
+	mAlienShip->SetPosition(GLVector3f(0, 30, 0));
 
 	return mAlienShip;
 
@@ -349,16 +358,26 @@ void Asteroids::OnPowerBulletCollision() {
 	mScoreKeeper.AddPowerBulletPoints();
 }
 
-void Asteroids::OnOuterBoundDetection() {
-	GLfloat alienX = mAlienShip->GetPosition().x;
-	GLfloat alienY = mAlienShip->GetPosition().y;
+void Asteroids::OnOuterBoundDetection(GameObjectType obj) {
+	
+	if (obj == GameObjectType("Spaceship")) {
+		GLfloat alienX = mAlienShip->GetPosition().x;
+		GLfloat alienY = mAlienShip->GetPosition().y;
 
-	GLfloat playerX = mSpaceship->GetPosition().x;
-	GLfloat playerY = mSpaceship->GetPosition().y;
+		GLfloat playerX = mSpaceship->GetPosition().x;
+		GLfloat playerY = mSpaceship->GetPosition().y;
 
-	float angle = atan2(playerY - alienY, playerX - alienX);
-	angle = angle * (180 / M_PI);
-	mAlienShip->SetAngle(angle);
+		float angle = atan2(playerY - alienY, playerX - alienX);
+		angle = angle * (180 / M_PI);
+		mAlienShip->SetAngle(angle);
+		mAlienShip->Shoot();
+	}
+	else if (obj == GameObjectType("Bullet")) {
+		mAlienShip->Rotate(90);
+		mAlienShip->Thrust(10);
+		SetTimer(2000, THRUST_TIME_OUT);
+	}
+	
 
 }
 

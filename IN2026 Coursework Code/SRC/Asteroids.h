@@ -52,7 +52,7 @@ public:
 
 	// Declaration of PowerBulletCollisionListener interface
 	void OnPowerBulletCollision();
-	void OnOuterBoundDetection();
+	void OnOuterBoundDetection(GameObjectType obj);
 
 private:
 	shared_ptr<Spaceship> mSpaceship;
@@ -79,6 +79,7 @@ private:
 	const static uint CREATE_NEW_PLAYER = 2;
 
 	const static uint SHIELD_TIME_OUT = 3;
+	const static uint THRUST_TIME_OUT = 3;
 
 	ScoreKeeper mScoreKeeper;
 	Player mPlayer;
