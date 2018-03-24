@@ -70,7 +70,7 @@ void Asteroids::Start()
 
 	// Create some asteroids and add them to the world
 	//CreateAsteroids(3);
-	//CreateBulletPowerUps(1);
+	CreateBulletPowerUps(1);
 
 	//Create the GUI
 	CreateGUI();

@@ -110,7 +110,11 @@ bool AlienShip::CollisionTest(shared_ptr<GameObject> o)
 {
 	//if (o->GetType() != GameObjectType("Asteroid")) return false;
 
-	if (o->GetType() == GameObjectType("Asteroid") || o->GetType() == GameObjectType("MiniAsteroid")) {
+	if (o->GetType() == GameObjectType("Asteroid") || 
+		o->GetType() == GameObjectType("MiniAsteroid") ||
+		o->GetType() == GameObjectType("BulletPowerUp") ||
+		o->GetType() == GameObjectType("ShieldPowerUp")
+		) {
 		return false;
 	}
 

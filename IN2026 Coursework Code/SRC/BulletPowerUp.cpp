@@ -23,7 +23,10 @@ bool BulletPowerUp::CollisionTest(shared_ptr<GameObject> o) {
 	if (o->GetType() == GameObjectType("Asteroid")) return false;
 	if (o->GetType() == GameObjectType("MiniAsteroid")) return false;
 	if (o->GetType() == GameObjectType("Bullet")) return false;
+	if (o->GetType() == GameObjectType("PowerBullet")) return false;
 	if (o->GetType() == GameObjectType("ShieldPowerUp")) return false;
+	if (o->GetType() == GameObjectType("AlienShip")) return false;
+	if (o->GetType() == GameObjectType("EnemyBullet")) return false;
 	if (mBoundingShape.get() == NULL) return false;
 	if (o->GetBoundingShape().get() == NULL) return false;
 	return mBoundingShape->CollisionTest(o->GetBoundingShape());
