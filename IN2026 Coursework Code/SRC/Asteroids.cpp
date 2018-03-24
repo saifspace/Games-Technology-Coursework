@@ -399,7 +399,7 @@ void Asteroids::OnOuterBoundDetection(GameObjectType obj) {
 		mAlienShip->SetAngle(angle);
 		mAlienShip->Shoot();
 	}
-	else if (obj == GameObjectType("Bullet")) {
+	else if (obj == GameObjectType("Bullet") || obj == GameObjectType("PowerBullet")) {
 		mAlienShip->Rotate(30);
 		mAlienShip->Thrust(50);
 		SetTimer(2000, THRUST_TIME_OUT);

@@ -125,7 +125,7 @@ bool AlienShip::CollisionTest(shared_ptr<GameObject> o)
 		}
 	}
 	
-	if (o->GetType() == GameObjectType("Bullet")) {
+	if (o->GetType() == GameObjectType("Bullet") || o->GetType() == GameObjectType("PowerBullet")) {
 		bool collision = mOuterBoundingShape->CollisionTest(o->GetBoundingShape());
 		if (collision == true) {
 			FireDetected(o->GetType());
