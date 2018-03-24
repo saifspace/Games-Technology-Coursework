@@ -225,7 +225,9 @@ void Asteroids::OnTimer(int value)
 	}
 
 	if (value == ROTATE_ALIEN_SHIP) {
-		mAlienShip->Rotate(90);
+		int rotationValues[3] = { 90, 180, 270 };
+		int r = rotationValues[rand() % 3];
+		mAlienShip->Rotate(r);
 		mAlienShip->SetAngle(mAlienShip->GetRotation());
 		mAlienShip->StopShip();
 		mAlienShip->MoveShip();
@@ -237,7 +239,6 @@ void Asteroids::OnTimer(int value)
 	if (value == MOVE_ALIEN_SHIP) {
 		mAlienShip->MoveShip();
 	}
-	
 }
 
 // PROTECTED INSTANCE METHODS /////////////////////////////////////////////////
