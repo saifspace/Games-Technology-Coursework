@@ -32,6 +32,7 @@ void AlienShip::Update(int t)
 
 void AlienShip::Render(void)
 {
+	/*
 	// Disable lighting to get solid lines
 	glDisable(GL_LIGHTING);
 	// Set pen colour to very light grey
@@ -57,6 +58,7 @@ void AlienShip::Render(void)
 	// Enable lighting
 	glEnable(GL_LIGHTING);
 	// Call base class to render debug graphics if required
+	*/
 	GameObject::Render();
 }
 

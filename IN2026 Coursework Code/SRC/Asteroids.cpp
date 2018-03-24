@@ -60,6 +60,7 @@ void Asteroids::Start()
 	Animation *explosion_anim = AnimationManager::GetInstance().CreateAnimationFromFile("explosion", 64, 1024, 64, 64, "explosion_fs.png");
 	Animation *asteroid1_anim = AnimationManager::GetInstance().CreateAnimationFromFile("asteroid1", 128, 8192, 128, 128, "asteroid1_fs.png");
 	Animation *spaceship_anim = AnimationManager::GetInstance().CreateAnimationFromFile("spaceship", 128, 128, 128, 128, "spaceship_fs.png");
+	Animation *alienShip_anim = AnimationManager::GetInstance().CreateAnimationFromFile("alienShip", 128, 128, 128, 128, "enemy_fs.png");
 
 	// Create a spaceship and add it to the world
 	mGameWorld->AddObject(CreateSpaceship());
@@ -279,6 +280,13 @@ shared_ptr<AlienShip> Asteroids::CreateAlienShip() {
 
 	mAlienShip->SetPosition(GLVector3f(0, 30, 0));
 	mAlienShip->MoveShip();
+
+	Animation *anim_ptr = AnimationManager::GetInstance().GetAnimationByName("alienShip");
+	shared_ptr<Sprite> alienShip_sprite =
+		make_shared<Sprite>(anim_ptr->GetWidth(), anim_ptr->GetHeight(), anim_ptr);
+	mAlienShip->SetSprite(alienShip_sprite);
+	mAlienShip->SetScale(0.1f);
+
 	return mAlienShip;
 
 }
