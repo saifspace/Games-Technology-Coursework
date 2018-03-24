@@ -222,7 +222,8 @@ void Asteroids::OnTimer(int value)
 	if (value == THRUST_TIME_OUT) {
 		mAlienShip->Thrust(0);
 		mAlienShip->Rotate(0);
-		mAlienShip->StopShip();
+		//mAlienShip->StopShip();
+		//mAlienShip->MoveShip();
 	}
 
 	if (value == ROTATE_ALIEN_SHIP) {
@@ -399,8 +400,8 @@ void Asteroids::OnOuterBoundDetection(GameObjectType obj) {
 		mAlienShip->Shoot();
 	}
 	else if (obj == GameObjectType("Bullet")) {
-		mAlienShip->Rotate(90);
-		mAlienShip->Thrust(10);
+		mAlienShip->Rotate(30);
+		mAlienShip->Thrust(50);
 		SetTimer(2000, THRUST_TIME_OUT);
 	}
 	
