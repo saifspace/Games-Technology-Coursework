@@ -1,16 +1,15 @@
-﻿  Asteroids.cpp
-  AlienShip.cpp
-  Generating Code...
+﻿  AlienShip.cpp
 AlienShip.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
   Asteroids.vcxproj -> C:\Users\Saif\Desktop\Games Tech\Coursework\IN2026 Coursework Code\VC\Asteroids\..\..\bin\Asteroids.exe
   Asteroids.vcxproj -> Debug\Asteroids.pdb (Full PDB)
   ..\..\assets\asteroid.shape
   ..\..\assets\asteroid1_fs.png
   ..\..\assets\bullet.shape
+  ..\..\assets\enemy_bullet.shape
   ..\..\assets\explosion_fs.png
   ..\..\assets\power_bullet.shape
   ..\..\assets\shield.shape
   ..\..\assets\spaceship.shape
   ..\..\assets\spaceship_fs.png
   ..\..\assets\thruster.shape
-          9 file(s) copied.
+         10 file(s) copied.

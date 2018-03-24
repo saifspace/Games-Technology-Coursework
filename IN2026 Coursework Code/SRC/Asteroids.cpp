@@ -1,4 +1,4 @@
-#include "Asteroid.h"
+ #include "Asteroid.h"
 #include "Asteroids.h"
 #include "Animation.h"
 #include "AnimationManager.h"
@@ -271,9 +271,9 @@ shared_ptr<GameObject> Asteroids::CreateSpaceship()
 shared_ptr<AlienShip> Asteroids::CreateAlienShip() {
 	
 	mAlienShip = make_shared<AlienShip>();
-	mAlienShip->SetBoundingShape(make_shared<BoundingSphere>(mAlienShip->GetThisPtr(), 4.0f));
+	mAlienShip->SetBoundingShape(make_shared<BoundingSphere>(mAlienShip->GetThisPtr(), 2.0f));
 	mAlienShip->SetOuterBoundingShape(make_shared<BoundingSphere>(mAlienShip->GetThisPtr(), 25.0f));
-	shared_ptr<Shape> bullet_shape = make_shared<Shape>("bullet.shape");
+	shared_ptr<Shape> bullet_shape = make_shared<Shape>("enemy_bullet.shape");
 	mAlienShip->SetBulletShape(bullet_shape);
 	mAlienShip->AddListener(thisPtr);
 
