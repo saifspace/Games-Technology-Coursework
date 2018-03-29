@@ -61,6 +61,8 @@ void Asteroids::Start()
 	Animation *asteroid1_anim = AnimationManager::GetInstance().CreateAnimationFromFile("asteroid1", 128, 8192, 128, 128, "asteroid1_fs.png");
 	Animation *spaceship_anim = AnimationManager::GetInstance().CreateAnimationFromFile("spaceship", 128, 128, 128, 128, "spaceship_fs.png");
 	Animation *alienShip_anim = AnimationManager::GetInstance().CreateAnimationFromFile("alienShip", 128, 128, 128, 128, "enemy_fs.png");
+	Animation *bullet_powerup = AnimationManager::GetInstance().CreateAnimationFromFile("bPowerup", 128, 1792, 128, 128, "bullet_powerup.png");
+	Animation *shield_powerup = AnimationManager::GetInstance().CreateAnimationFromFile("sPowerup", 128, 3584, 128, 128, "shield_powerup.png");
 
 	// Create a spaceship and add it to the world
 	mGameWorld->AddObject(CreateSpaceship());
@@ -422,14 +424,26 @@ shared_ptr<GameObject> Asteroids::CreateExplosion()
 
 void Asteroids::CreateBulletPowerUps(const uint num_powerUps) {
 	for (uint i = 0; i < num_powerUps; i++) {
+		Animation *bullet_anim_ptr = AnimationManager::GetInstance().GetAnimationByName("bPowerup");
+		shared_ptr<Sprite> bullet_powerup_sprite
+			= make_shared<Sprite>(bullet_anim_ptr->GetWidth(), bullet_anim_ptr->GetHeight(), bullet_anim_ptr);
+		bullet_powerup_sprite->SetLoopAnimation(true);
+
 		shared_ptr<GameObject> powerUp = make_shared<BulletPowerUp>();
 		powerUp->SetBoundingShape(make_shared<BoundingSphere>(powerUp->GetThisPtr(), 5.0f));
 		powerUp->SetScale(0.5f);
+		powerUp->SetSprite(bullet_powerup_sprite);
 		mGameWorld->AddObject(powerUp);
+
+		Animation *shield_anim_ptr = AnimationManager::GetInstance().GetAnimationByName("sPowerup");
+		shared_ptr<Sprite> shield_powerup_sprite
+			= make_shared<Sprite>(shield_anim_ptr->GetWidth(), shield_anim_ptr->GetHeight(), shield_anim_ptr);
+		bullet_powerup_sprite->SetLoopAnimation(true);
 
 		shared_ptr<GameObject> shieldPowerUp = make_shared<ShieldPowerUp>();
 		shieldPowerUp->SetBoundingShape(make_shared<BoundingSphere>(shieldPowerUp->GetThisPtr(), 5.0f));
 		shieldPowerUp->SetScale(0.5f);
+		shieldPowerUp->SetSprite(shield_powerup_sprite);
 		mGameWorld->AddObject(shieldPowerUp);
 	}
 }

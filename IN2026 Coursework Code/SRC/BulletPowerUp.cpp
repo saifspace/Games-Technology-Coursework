@@ -9,7 +9,7 @@ BulletPowerUp::BulletPowerUp(void) : GameObject("BulletPowerUp") {
 	mRotation = rand() % 90;
 	mPosition.x = rand() / 2;
 	mPosition.y = rand() / 2;
-	//mPosition.z = 0.0;
+	mPosition.z = 0.0;
 	mVelocity.x = 10.0 * cos(DEG2RAD*mAngle);
 	mVelocity.y = 10.0 * sin(DEG2RAD*mAngle);
 	mVelocity.z = 0.0;
@@ -37,6 +37,7 @@ void BulletPowerUp::OnCollision(const GameObjectList& objects) {
 	mWorld->FlagForRemoval(GetThisPtr());
 }
 
+/*
 void BulletPowerUp::Render(void) {
 		// Disable lighting for solid colour lines
 		glDisable(GL_LIGHTING);
@@ -57,4 +58,4 @@ void BulletPowerUp::Render(void) {
 		glEnd();
 		// Enable lighting
 		glEnable(GL_LIGHTING);
-}
+}*/

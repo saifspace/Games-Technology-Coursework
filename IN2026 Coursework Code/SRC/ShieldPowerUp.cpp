@@ -36,6 +36,7 @@ void ShieldPowerUp::OnCollision(const GameObjectList& objects) {
 	mWorld->FlagForRemoval(GetThisPtr());
 }
 
+/*
 void ShieldPowerUp::Render(void) {
 	// Disable lighting for solid colour lines
 	glDisable(GL_LIGHTING);
@@ -56,4 +57,4 @@ void ShieldPowerUp::Render(void) {
 	glEnd();
 	// Enable lighting
 	glEnable(GL_LIGHTING);
-}
+}*/
