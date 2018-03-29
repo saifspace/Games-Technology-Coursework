@@ -1,6 +1,4 @@
 ﻿  Asteroids.cpp
-  ShieldPowerUp.cpp
-  Generating Code...
 AlienShip.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
   Asteroids.vcxproj -> C:\Users\Saif\Desktop\Games Tech\Coursework\IN2026 Coursework Code\VC\Asteroids\..\..\bin\Asteroids.exe
   Asteroids.vcxproj -> Debug\Asteroids.pdb (Full PDB)

@@ -71,7 +71,7 @@ private:
 	void CreateGUI();
 	void CreateAsteroids(const uint num_asteroids);
 	shared_ptr<GameObject> CreateExplosion();
-	void CreateBulletPowerUps(const uint num_powerUps);
+	void CreatePowerUps(const uint num_powerUps);
 	shared_ptr<AlienShip> CreateAlienShip();
 	
 	const static uint SHOW_GAME_OVER = 0;

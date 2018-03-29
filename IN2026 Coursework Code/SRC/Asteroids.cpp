@@ -67,12 +67,12 @@ void Asteroids::Start()
 	// Create a spaceship and add it to the world
 	mGameWorld->AddObject(CreateSpaceship());
 
-	mGameWorld->AddObject(CreateAlienShip());
-	SetTimer(3000, ROTATE_ALIEN_SHIP);
+	//mGameWorld->AddObject(CreateAlienShip());
+	//SetTimer(3000, ROTATE_ALIEN_SHIP);
 
 	// Create some asteroids and add them to the world
 	//CreateAsteroids(3);
-	CreateBulletPowerUps(1);
+	CreatePowerUps(1);
 
 	//Create the GUI
 	CreateGUI();
@@ -422,7 +422,7 @@ shared_ptr<GameObject> Asteroids::CreateExplosion()
 	return explosion;
 }
 
-void Asteroids::CreateBulletPowerUps(const uint num_powerUps) {
+void Asteroids::CreatePowerUps(const uint num_powerUps) {
 	for (uint i = 0; i < num_powerUps; i++) {
 		Animation *bullet_anim_ptr = AnimationManager::GetInstance().GetAnimationByName("bPowerup");
 		shared_ptr<Sprite> bullet_powerup_sprite
