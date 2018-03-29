@@ -32,33 +32,6 @@ void AlienShip::Update(int t)
 
 void AlienShip::Render(void)
 {
-	/*
-	// Disable lighting to get solid lines
-	glDisable(GL_LIGHTING);
-	// Set pen colour to very light grey
-	glColor3f(0.8, 0.8, 0.8);
-	// Start drawing closed shape
-	glBegin(GL_LINE_LOOP);
-	// Add vertices of ship's body
-	glVertex3f(-3, -2, 0);
-	glVertex3f(4, 0, 0);
-	glVertex3f(-3, 2, 0);
-	// Finish drawing closed shape
-	glEnd();
-
-	if (mThrust > 0) {
-		glBegin(GL_LINE_STRIP);
-		glColor3f(0.8, 0.4, 0.1);
-		glVertex3f(-2, -1, 0);
-		glVertex3f(-4, 0, 0);
-		glVertex3f(-2, 1, 0);
-		glEnd();
-	}
-
-	// Enable lighting
-	glEnable(GL_LIGHTING);
-	// Call base class to render debug graphics if required
-	*/
 	GameObject::Render();
 }
 
@@ -80,16 +53,16 @@ void AlienShip::Shoot(void)
 	// Check the world exists
 	if (!mWorld) return;
 
-	GLVector3f spaceship_heading(cos(DEG2RAD*mAngle), sin(DEG2RAD*mAngle), 0);
-	spaceship_heading.normalize();
+	GLVector3f alienship_heading(cos(DEG2RAD*mAngle), sin(DEG2RAD*mAngle), 0);
+	alienship_heading.normalize();
 
-	GLVector3f bullet_position = mPosition + (spaceship_heading * 4);
+	GLVector3f bullet_position = mPosition + (alienship_heading * 4);
 
 	float bullet_speed = 30;
 
-	GLVector3f bullet_velocity = mVelocity + spaceship_heading * bullet_speed;
+	GLVector3f bullet_velocity = mVelocity + alienship_heading * bullet_speed;
 
-	shared_ptr<GameObject> bullet(new Bullet("EnemyBullet",bullet_position, bullet_velocity, mAcceleration, mAngle, 0, 500));
+	shared_ptr<GameObject> bullet(new Bullet("EnemyBullet",bullet_position, bullet_velocity, mAcceleration, mAngle, 0, 800));
 	bullet->SetBoundingShape(make_shared<BoundingSphere>(bullet->GetThisPtr(), 2.0f));
 	bullet->SetShape(mBulletShape);
 
@@ -108,7 +81,6 @@ void AlienShip::MoveShip() {
 
 bool AlienShip::CollisionTest(shared_ptr<GameObject> o)
 {
-	//if (o->GetType() != GameObjectType("Asteroid")) return false;
 
 	if (o->GetType() == GameObjectType("Asteroid") || 
 		o->GetType() == GameObjectType("MiniAsteroid") ||

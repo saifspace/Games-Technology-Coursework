@@ -67,8 +67,8 @@ void Asteroids::Start()
 	// Create a spaceship and add it to the world
 	mGameWorld->AddObject(CreateSpaceship());
 
-	//mGameWorld->AddObject(CreateAlienShip());
-	//SetTimer(3000, ROTATE_ALIEN_SHIP);
+	mGameWorld->AddObject(CreateAlienShip());
+	SetTimer(3000, ROTATE_ALIEN_SHIP);
 
 	// Create some asteroids and add them to the world
 	//CreateAsteroids(3);
@@ -185,6 +185,12 @@ void Asteroids::OnObjectRemoved(GameWorld* world, shared_ptr<GameObject> object)
 		mSpaceship->SetShield(true);
 		SetTimer(5000, SHIELD_TIME_OUT);
 	}
+	if (object->GetType() == GameObjectType("AlienShip")) {
+		shared_ptr<GameObject> explosion = CreateExplosion();
+		explosion->SetPosition(object->GetPosition());
+		explosion->SetRotation(object->GetRotation());
+		mGameWorld->AddObject(explosion);
+	}
 
 }
 
@@ -224,8 +230,6 @@ void Asteroids::OnTimer(int value)
 	if (value == THRUST_TIME_OUT) {
 		mAlienShip->Thrust(0);
 		mAlienShip->Rotate(0);
-		//mAlienShip->StopShip();
-		//mAlienShip->MoveShip();
 	}
 
 	if (value == ROTATE_ALIEN_SHIP) {

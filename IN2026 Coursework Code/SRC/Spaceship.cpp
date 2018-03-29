@@ -112,9 +112,10 @@ void Spaceship::Shoot(shared_ptr<PowerBulletCollisionListener> listener)
 
 bool Spaceship::CollisionTest(shared_ptr<GameObject> o)
 {
-	//if (o->GetType() != GameObjectType("Asteroid")) return false;
-	
-	if (o->GetType() == GameObjectType("Asteroid") || o->GetType() == GameObjectType("MiniAsteroid")) {
+
+	if (o->GetType() == GameObjectType("Asteroid") || o->GetType() == GameObjectType("MiniAsteroid") 
+		|| o->GetType() == GameObjectType("AlienShip") 
+		|| o->GetType() == GameObjectType("EnemyBullet")) {
 		return mBoundingShape->CollisionTest(o->GetBoundingShape());
 	} else {
 		return false;
