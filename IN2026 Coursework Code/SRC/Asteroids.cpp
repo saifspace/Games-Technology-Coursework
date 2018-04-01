@@ -67,12 +67,12 @@ void Asteroids::Start()
 	// Create a spaceship and add it to the world
 	mGameWorld->AddObject(CreateSpaceship());
 
-	//mGameWorld->AddObject(CreateAlienShip());
-	//SetTimer(3000, ROTATE_ALIEN_SHIP);
+	mGameWorld->AddObject(CreateAlienShip());
+	SetTimer(3000, ROTATE_ALIEN_SHIP);
 
 	// Create some asteroids and add them to the world
-	//CreateAsteroids(3);
-	CreatePowerUps(2);
+	CreateAsteroids(5);
+	CreatePowerUps(1);
 
 	//Create the GUI
 	CreateGUI();
@@ -157,7 +157,6 @@ void Asteroids::OnObjectRemoved(GameWorld* world, shared_ptr<GameObject> object)
 		explosion->SetRotation(object->GetRotation());
 		mGameWorld->AddObject(explosion);
 		mAsteroidCount--;
-		//mMiniAsteroidCount += 2;
 		if (mAsteroidCount <= 0 && mMiniAsteroidCount <= 0) 
 		{ 
 			SetTimer(500, START_NEXT_LEVEL); 
@@ -215,8 +214,7 @@ void Asteroids::OnTimer(int value)
 	if (value == START_NEXT_LEVEL)
 	{
 		mLevel++;
-		//int num_asteroids = 10 + 2 * mLevel;
-		int num_asteroids = 3;
+		int num_asteroids = 5 + 2 * mLevel;
 		CreateAsteroids(num_asteroids);
 		CreatePowerUps(1);
 	}
