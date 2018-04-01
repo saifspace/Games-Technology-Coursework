@@ -31,7 +31,7 @@ public:
 	bool CollisionTest(shared_ptr<GameObject> o);
 	void OnCollision(const GameObjectList &objects);
 
-	// give spaceship two power bullets
+	// give spaceship power bullets
 	void SetPowerUpBullets(int i) {
 		mPowerUpBullets = i;
 	}
