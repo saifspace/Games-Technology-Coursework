@@ -67,12 +67,12 @@ void Asteroids::Start()
 	// Create a spaceship and add it to the world
 	mGameWorld->AddObject(CreateSpaceship());
 
-	mGameWorld->AddObject(CreateAlienShip());
-	SetTimer(3000, ROTATE_ALIEN_SHIP);
+	//mGameWorld->AddObject(CreateAlienShip());
+	//SetTimer(3000, ROTATE_ALIEN_SHIP);
 
 	// Create some asteroids and add them to the world
 	//CreateAsteroids(3);
-	CreatePowerUps(1);
+	CreatePowerUps(2);
 
 	//Create the GUI
 	CreateGUI();
@@ -179,7 +179,9 @@ void Asteroids::OnObjectRemoved(GameWorld* world, shared_ptr<GameObject> object)
 	}
 
 	if (object->GetType() == GameObjectType("BulletPowerUp")) {
-		mSpaceship->SetPowerUpBullets(2);
+		int currPowerBullets = mSpaceship->GetPowerBullets();
+		currPowerBullets += 2;
+		mSpaceship->SetPowerUpBullets(currPowerBullets);
 	}
 	if (object->GetType() == GameObjectType("ShieldPowerUp")) {
 		mSpaceship->SetShield(true);
@@ -216,6 +218,7 @@ void Asteroids::OnTimer(int value)
 		//int num_asteroids = 10 + 2 * mLevel;
 		int num_asteroids = 3;
 		CreateAsteroids(num_asteroids);
+		CreatePowerUps(1);
 	}
 
 	if (value == SHOW_GAME_OVER)
@@ -277,7 +280,7 @@ shared_ptr<GameObject> Asteroids::CreateSpaceship()
 shared_ptr<AlienShip> Asteroids::CreateAlienShip() {
 	
 	mAlienShip = make_shared<AlienShip>();
-	mAlienShip->SetBoundingShape(make_shared<BoundingSphere>(mAlienShip->GetThisPtr(), 2.0f));
+	mAlienShip->SetBoundingShape(make_shared<BoundingSphere>(mAlienShip->GetThisPtr(), 3.0f));
 	mAlienShip->SetOuterBoundingShape(make_shared<BoundingSphere>(mAlienShip->GetThisPtr(), 25.0f));
 	shared_ptr<Shape> bullet_shape = make_shared<Shape>("enemy_bullet.shape");
 	mAlienShip->SetBulletShape(bullet_shape);
