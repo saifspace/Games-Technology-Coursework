@@ -36,26 +36,3 @@ bool BulletPowerUp::CollisionTest(shared_ptr<GameObject> o) {
 void BulletPowerUp::OnCollision(const GameObjectList& objects) {
 	mWorld->FlagForRemoval(GetThisPtr());
 }
-
-/*
-void BulletPowerUp::Render(void) {
-		// Disable lighting for solid colour lines
-		glDisable(GL_LIGHTING);
-		// Start drawing lines
-		glBegin(GL_LINE_LOOP);
-		// Set colour to grey
-		glColor3f(0.6, 0, 0);
-		// Add vertices to draw an octagon
-		glVertex3f(-7, -7, 0.0);
-		glVertex3f(-10, 0, 0.0);
-		glVertex3f(-7, 7, 0.0);
-		glVertex3f(0, 10, 0.0);
-		glVertex3f(7, 7, 0.0);
-		glVertex3f(10, 0, 0.0);
-		glVertex3f(7, -7, 0.0);
-		glVertex3f(0, -10, 0.0);
-		// Finish drawing lines
-		glEnd();
-		// Enable lighting
-		glEnable(GL_LIGHTING);
-}*/
